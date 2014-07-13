@@ -31,9 +31,16 @@ public class WifiLoggerService extends Service
         intentFilter.addAction(CONNECTIVITY_CHANGE);
         mWifiReceiver = new WifiReceiver();
 
-        Log.e("WifiLoggerService", "Service started!");
+        Log.d("WifiLoggerService", "onCreate");
 
         this.registerReceiver(mWifiReceiver, intentFilter);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("WifiLoggerService", "onStartCommand");
+
+        return START_STICKY;
     }
 
     @Override
